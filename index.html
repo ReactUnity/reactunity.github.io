@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | react-unity</title>
-  </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" style="width: 960px; height: 600px; background: #231F20"></canvas>
-    <script src="Build/Web.loader.js"></script>
-    <script>
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Web.data.gz",
-        frameworkUrl: "Build/Web.framework.js.gz",
-        codeUrl: "Build/Web.wasm.gz",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "gokhan-kurt",
-        productName: "react-unity",
-        productVersion: "0.1",
-      });
-    </script>
-  </body>
+<html lang="en-us" style="height: 100%; font-size: 0;">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Unity WebGL Player | react-unity</title>
+</head>
+
+<body style="text-align: center; margin: 0;">
+  <canvas id="unity-canvas" style="width: 100%; height: 100%; background: #231F20"></canvas>
+  <script src="Build/Web.loader.js"></script>
+  <script>
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+      dataUrl: "Build/Web.data",
+      frameworkUrl: "Build/Web.framework.js",
+      codeUrl: "Build/Web.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "gokhan-kurt",
+      productName: "react-unity",
+      productVersion: "0.1",
+    });
+  </script>
+</body>
+
 </html>
