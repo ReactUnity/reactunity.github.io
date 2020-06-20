@@ -1,14 +1,65 @@
 <!DOCTYPE html>
-<html lang="en-us" style="height: 100%; font-size: 0;">
+<html lang="en-us">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Unity WebGL Player | react-unity</title>
+  <title>React Unity Gallery</title>
+  <style>
+    html,
+    body {
+      font-size: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+    #unity-canvas {
+      height: 100%;
+      width: 100%;
+    }
+
+    .loader-center {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 0;
+      overflow: visible;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .loader {
+      position: absolute;
+      height: 50px;
+      top: -25px;
+      left: 50px;
+      right: 50px;
+      background: #c5cae9;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      height: 100%;
+      background: #3f51b5;
+    }
+
+  </style>
 </head>
 
-<body style="text-align: center; margin: 0;">
-  <canvas id="unity-canvas" style="width: 100%; height: 100%; background: #231F20"></canvas>
+<body style="text-align: center">
+  <canvas id="unity-canvas"
+    style="background: #231F20"></canvas>
+
+  <div class="loader-center" id="loader-root">
+    <div class="loader">
+      <div class="loader-bar" id="loader-bar"></div>
+    </div>
+  </div>
+
   <script src="Build/Web.loader.js"></script>
   <script>
     createUnityInstance(document.querySelector("#unity-canvas"), {
@@ -17,8 +68,14 @@
       codeUrl: "Build/Web.wasm",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "gokhan-kurt",
-      productName: "react-unity",
+      productName: "React Unity Gallery",
       productVersion: "0.1",
+    }, function onProgress(progress) {
+      var bar = document.querySelector("#loader-bar");
+      if (bar) bar.style.width = (progress * 100) + '%';
+
+      var loader = document.querySelector("#loader-root");
+      loader.style.display = progress < 1 ? 'block' : 'none';
     });
   </script>
 </body>
