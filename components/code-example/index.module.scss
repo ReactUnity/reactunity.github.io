@@ -4,31 +4,56 @@
   align-items: stretch;
   justify-content: flex-start;
 
-  .codeEditor {
+  &.inline {
+    height: 420px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    @media (max-width: 720px) {
+      flex-direction: column;
+      height: auto;
+
+      .codeEditor {
+        max-height: 360px;
+      }
+
+      .unityContainer {
+        height: 360px;
+      }
+    }
+  }
+
+  .codeEditorSection {
     height: 100%;
     flex: 1 0 60%;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
 
-    > div {
-      min-height: 100%;
-    }
+    .codeEditor {
+      flex-grow: 1;
+      overflow: auto;
 
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      opacity: 0.5;
-    }
+      > div {
+        min-height: 100%;
+      }
 
-    &::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.05);
-    }
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        opacity: 0.5;
+      }
 
-    &::-webkit-scrollbar-thumb {
-      background: rgb(180, 180, 180);
-    }
+      &::-webkit-scrollbar-track {
+        background: #282a36;
+      }
 
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(160, 160, 160);
+      &::-webkit-scrollbar-thumb {
+        background: #6a6a6a;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #5f5f5f;
+      }
     }
   }
 
@@ -36,14 +61,25 @@
     flex: 1 0 40%;
     position: relative;
     min-height: 200px;
+    display: flex;
+    flex-direction: column;
 
-    .setActiveView {
+    .setActiveView,
+    .errorView {
       position: absolute;
       left: 0;
       right: 0;
-      top: 0;
+      top: 42px;
       bottom: 0;
+    }
 
+    .errorView {
+      background: white;
+      padding: 12px;
+      color: rgb(255, 100, 100);
+    }
+
+    .setActiveView {
       background: rgba($color: #000000, $alpha: 0.3);
 
       display: flex;
@@ -63,19 +99,32 @@
 
   .unityContainer {
     width: 100%;
-    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
   }
 
-  @media (max-width: 720px) {
-    flex-direction: column;
-    height: auto !important;
+  .title {
+    padding: 0px 12px;
+    background-color: #ececec;
+    color: #6d6d6d;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 3;
+    text-transform: uppercase;
+    text-align: start;
+    letter-spacing: 0.08em;
 
-    .codeEditor {
-      max-height: 420px;
+    &.error {
+      background: #ff6464;
+      color: #ffffff;
     }
+  }
 
-    .unityContainer {
-      height: 420px;
+  .codeEditorSection {
+    .title {
+      background: #4a505e;
+      color: #afafaf;
     }
   }
 }

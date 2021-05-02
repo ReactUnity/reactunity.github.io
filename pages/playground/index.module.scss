@@ -9,6 +9,10 @@
 .codeExample {
   height: 100%;
 
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+
   .unityContainerWrapper,
   .unityInstance {
     width: 100%;

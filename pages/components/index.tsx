@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { CompiledCode } from 'components/code-editor'
-import CodeExample from 'components/code-example'
+import { InlineCodeExample } from 'components/code-example'
 import Layout from 'components/layout'
 import Markdown from 'components/markdown'
 import Unity, { UnityInstance } from 'components/unity'
 import { getAllComponents } from 'lib/components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import utilStyles from 'styles/utils.module.scss'
 import style from './index.module.scss'
@@ -101,10 +101,11 @@ export default function Components({ components }: Props) {
 
             <Markdown content={cmp.contentHtml} className={style.content} />
 
-            <CodeExample code={cmp.code} active={cmp.id === activeComponent} id={cmp.id} className={style.codeExample}
+            <InlineCodeExample code={cmp.code} active={cmp.id === activeComponent} id={cmp.id} className={style.codeExample}
               unityContainerRef={setComponentRef}
               onChange={cc => setCompiledCode(cc, cmp.id)}
-              onActivate={() => setActiveComponent(cmp.id)} />
+              onActivate={() => setActiveComponent(cmp.id)}
+              error={compiledCodes[cmp.id]?.error} />
           </section>)}
 
         <div ref={setDefaultContainer} />

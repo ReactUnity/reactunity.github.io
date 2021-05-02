@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { CompiledCode } from 'components/code-editor'
-import CodeExample from 'components/code-example'
+import { CodeExample } from 'components/code-example'
 import Unity, { UnityInstance } from 'components/unity'
 import { getPlayground } from 'lib/components'
 import { GetStaticProps } from 'next'
