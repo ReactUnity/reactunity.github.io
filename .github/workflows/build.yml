@@ -1,11 +1,9 @@
 name: CI
+
 on:
   push:
     branches:
       - main
-    paths-ignore:
-    - 'docs/**'
-    - '.vscode/**'
   workflow_dispatch:
 
 jobs:
