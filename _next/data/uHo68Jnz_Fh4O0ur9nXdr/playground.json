@@ -1,1 +1,0 @@
-{"pageProps":{"code":"function Example() {\n  return <view style={{\n    padding: 20,\n    backgroundColor: 'crimson',\n    color: 'white',\n  }}>\n    Hello world\n  </view>;\n};\n\nReactUnityRenderer.render(<Example />);\n"},"__N_SSG":true}
