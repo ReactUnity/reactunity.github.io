@@ -1,0 +1,48 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+    - 'docs/**'
+    - '.vscode/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: Get yarn cache directory
+        id: yarn-cache
+        run: |
+          echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache Node Dependencies
+        id: cache-yarn
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.yarn-cache.outputs.dir }}
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Node Dependencies
+        if: steps.cache-yarn.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: out
+          clean: true

@@ -1,0 +1,81 @@
+.host {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  .codeEditor {
+    height: 100%;
+    flex: 1 0 60%;
+    overflow: auto;
+
+    > div {
+      min-height: 100%;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      opacity: 0.5;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(180, 180, 180);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(160, 160, 160);
+    }
+  }
+
+  .livePreview {
+    flex: 1 0 40%;
+    position: relative;
+    min-height: 200px;
+
+    .setActiveView {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      background: rgba($color: #000000, $alpha: 0.3);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      button {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .unityContainer {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    height: auto !important;
+
+    .codeEditor {
+      max-height: 420px;
+    }
+
+    .unityContainer {
+      height: 420px;
+    }
+  }
+}

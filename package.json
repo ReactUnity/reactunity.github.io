@@ -1,24 +1,30 @@
 {
-  "name": "my-app",
+  "name": "@reactunity/website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
-    "date-fns": "^2.11.1",
-    "gray-matter": "^4.0.2",
-    "next": "^10.0.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "remark": "^12.0.0",
-    "remark-html": "^12.0.0"
+    "@babel/standalone": "^7.14.0",
+    "clsx": "^1.1.1",
+    "date-fns": "^2.21.1",
+    "gray-matter": "^4.0.3",
+    "next": "^10.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-live": "^2.2.3",
+    "remark": "^13.0.0",
+    "remark-deflist": "^0.3.0",
+    "remark-html": "^13.0.1"
   },
   "devDependencies": {
-    "@types/node": "^13.11.0",
-    "@types/react": "^16.9.32",
-    "typescript": "^3.8.3"
+    "@types/node": "^15.0.1",
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.3",
+    "sass": "^1.32.12",
+    "typescript": "^4.2.4"
   }
 }

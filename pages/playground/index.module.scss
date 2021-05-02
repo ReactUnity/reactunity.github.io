@@ -1,0 +1,17 @@
+.host {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.codeExample {
+  height: 100%;
+
+  .unityContainerWrapper,
+  .unityInstance {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import utilStyles from 'styles/utils.module.scss'
+import styles from './layout.module.css'
 
-const name = '[Your Name]'
-export const siteTitle = 'Next.js Sample Website'
+const name = 'React Unity'
+export const siteTitle = 'React Unity'
 
 export default function Layout({
   children,
@@ -34,9 +33,8 @@ export default function Layout({
       <header className={styles.header}>
         {home ? (
           <>
-            <Image
-              priority
-              src="/images/profile.jpg"
+            <img
+              src="/images/logo.png"
               className={utilStyles.borderCircle}
               height={144}
               width={144}
@@ -48,9 +46,8 @@ export default function Layout({
           <>
             <Link href="/">
               <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
+                <img
+                  src="/images/logo.png"
                   className={utilStyles.borderCircle}
                   height={108}
                   width={108}
