@@ -6,6 +6,14 @@ import style from './index.module.scss';
 
 export interface UnityInstance {
   SendMessage: (objectName: string, methodName: string, argument?: string | number) => void;
+  SetFullscreen: (toggle: 0 | 1) => void;
+  Quit: () => Promise<void>;
+}
+
+export interface UnityAPI extends UnityInstance {
+  SetReactScript: (jsx: string, css: string) => void;
+  LoadScene: (sceneName: string) => void;
+  ReloadScene: () => void;
 }
 
 declare global {
@@ -20,13 +28,13 @@ interface Props {
   className?: string;
   sampleName?: string;
   innerRef?: LegacyRef<HTMLDivElement>;
-  unityRef?: (unityInstance: UnityInstance) => void;
+  unityRef?: (unityInstance: UnityAPI) => void;
 }
 
 export default function Unity({ className, sampleName, unityRef, innerRef }: Props) {
   const [progress, setProgress] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(isLoaderScriptLoaded());
-  const [unityInstance, setUnityInstance] = useState<UnityInstance>();
+  const [unityInstance, setUnityInstance] = useState<UnityAPI>();
 
   const setCanvasRef = useCallback(async canvas => {
     if (!canvas || !scriptLoaded) { return; }
@@ -41,7 +49,18 @@ export default function Unity({ className, sampleName, unityRef, innerRef }: Pro
       productVersion: '0.1',
     }, setProgress);
 
-    setUnityInstance(unityInstance);
+    setUnityInstance({
+      SendMessage: unityInstance.SendMessage.bind(unityInstance),
+      SetFullscreen: unityInstance.SetFullscreen.bind(unityInstance),
+      Quit: unityInstance.Quit.bind(unityInstance),
+      SetReactScript: (jsx, css) => {
+        unityInstance.SendMessage('ReactCanvas', 'SetJSX', jsx);
+        if (css) unityInstance.SendMessage('ReactCanvas', 'SetCSS', css);
+        unityInstance.SendMessage('ReactCanvas', 'Render');
+      },
+      LoadScene: (sceneName) => unityInstance.SendMessage('ReactCanvas', 'LoadScene', sceneName),
+      ReloadScene: () => unityInstance.SendMessage('ReactCanvas', 'ReloadScene'),
+    });
   }, [sampleName, scriptLoaded, setUnityInstance]);
 
   useEffect(() => {
@@ -61,7 +80,10 @@ export default function Unity({ className, sampleName, unityRef, innerRef }: Pro
   useEffect(() => {
     if (!unityInstance) return;
 
-    return () => unityInstance.SendMessage('ReactCanvas', 'Quit');
+    return () => {
+      // TODO: quit crashes the Unity after a few launches
+      // unityInstance.Quit();
+    };
   }, [unityInstance]);
 
   return <>

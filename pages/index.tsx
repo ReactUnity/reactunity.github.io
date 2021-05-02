@@ -26,6 +26,12 @@ export default function Home({ }: Props) {
       </h2>
 
       <h2 className={utilStyles.headingLg}>
+        <Link href={`/styling`}>
+          Styling
+        </Link>
+      </h2>
+
+      <h2 className={utilStyles.headingLg}>
         <Link href={`/playground`}>
           Playground
         </Link>

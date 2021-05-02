@@ -1,0 +1,38 @@
+.host {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+
+  section {
+    margin-top: 40px;
+  }
+}
+
+.codeExample {
+  .unityContainerWrapper,
+  .unityInstance {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.titleBubble,
+.inheritedBubble {
+  font-size: 14px;
+  margin-left: 14px;
+  padding: 4px 8px;
+  background: #ddd;
+  color: #4e4e4e;
+  border-radius: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  display: inline-block;
+  height: 26px;
+  bottom: 4px;
+  position: relative;
+
+  code {
+    color: #111;
+  }
+}

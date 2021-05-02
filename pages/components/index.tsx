@@ -1,9 +1,8 @@
 import clsx from 'clsx'
-import { CompiledCode } from 'components/code-editor'
-import { InlineCodeExample } from 'components/code-example'
+import { CodeSpace, CompiledCode, InlineCodeExample } from 'components/code-example'
 import Layout from 'components/layout'
 import Markdown from 'components/markdown'
-import Unity, { UnityInstance } from 'components/unity'
+import Unity, { UnityAPI } from 'components/unity'
 import { getAllComponents } from 'lib/components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
@@ -18,7 +17,7 @@ interface Component {
   id: string;
   contentHtml: string;
   component: string;
-  code: string;
+  code: CodeSpace;
 };
 
 interface Props {
@@ -45,7 +44,7 @@ export default function Components({ components }: Props) {
   const [activeComponent, setActiveComponent] = useState<string>(components[0].id);
   const activeCode = compiledCodes[activeComponent];
 
-  const [unityRef, setUnityRef] = useState<UnityInstance>(null);
+  const [unityRef, setUnityRef] = useState<UnityAPI>(null);
 
   const [defaultContainer, setDefaultContainer] = useState<HTMLDivElement>(null);
   const unityContainer = componentRefs.current[activeComponent] || defaultContainer;
@@ -71,7 +70,7 @@ export default function Components({ components }: Props) {
   useLayoutEffect(() => {
     if (!(activeCode && unityRef)) return;
     if (activeCode.error) return;
-    unityRef.SendMessage('ReactCanvas', 'SetScript', activeCode.compiledCode);
+    unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
   }, [activeCode, unityRef]);
 
   useLayoutEffect(() => {

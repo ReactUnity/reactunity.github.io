@@ -1,24 +1,14 @@
 import clsx from 'clsx'
-import { CompiledCode } from 'components/code-editor'
-import { CodeExample } from 'components/code-example'
-import Unity, { UnityInstance } from 'components/unity'
+import { CodeExample, CodeSpace, CompiledCode } from 'components/code-example'
+import Unity, { UnityAPI } from 'components/unity'
 import { getPlayground } from 'lib/components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import style from './index.module.scss'
 
-interface Component {
-  order: number;
-  title: string;
-  id: string;
-  contentHtml: string;
-  component: string;
-  code: string;
-};
-
 interface Props {
-  code: string;
+  code: CodeSpace;
 }
 
 export default function Components({ code }: Props) {
@@ -27,7 +17,7 @@ export default function Components({ code }: Props) {
     setActiveCode(cc);
   }, [setActiveCode]);
 
-  const [unityRef, setUnityRef] = useState<UnityInstance>(null);
+  const [unityRef, setUnityRef] = useState<UnityAPI>(null);
 
   const unityComponent = useMemo(() => <Unity sampleName="sample1" unityRef={setUnityRef}
     className={clsx(style.unityInstance)} />, [setUnityRef]);
@@ -35,7 +25,7 @@ export default function Components({ code }: Props) {
   useLayoutEffect(() => {
     if (!(activeCode && unityRef)) return;
     if (activeCode.error) return;
-    unityRef.SendMessage('ReactCanvas', 'SetScript', activeCode.compiledCode);
+    unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
   }, [activeCode, unityRef]);
 
   return <>
@@ -50,7 +40,7 @@ export default function Components({ code }: Props) {
   </>;
 }
 
-export const getStaticProps: GetStaticProps<{ code: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ code: CodeSpace }> = async ({ params }) => {
   const code = await getPlayground();
   return {
     props: {

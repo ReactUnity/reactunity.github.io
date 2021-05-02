@@ -1,3 +1,4 @@
+import { CodeSpace } from 'components/code-example'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
@@ -6,17 +7,18 @@ import deflist from 'remark-deflist'
 import html from 'remark-html'
 
 const componentsDirectory = path.join(process.cwd(), 'content/components');
-const playgroundPath = path.join(process.cwd(), 'content/playground.jsx');
+const playgroundPath = path.join(process.cwd(), 'content/playground');
 
 export async function getAllComponents() {
-  const fileNames = fs.readdirSync(componentsDirectory);
-  const allPostsData = (await Promise.all(fileNames.map(async fileName => {
-    if (!fileName.endsWith('.md')) return null;
+  const items = fs.readdirSync(componentsDirectory, { withFileTypes: true }).filter(x => x.isDirectory());
 
-    const id = fileName.replace(/\.md$/, '');
-    const sourceFileName = fileName.replace(/\.md$/, '.jsx');
+  const allItems = (await Promise.all(items.map(async folder => {
+    const id = folder.name;
+    if (id.startsWith('_')) return null;
 
-    const fullPath = path.join(componentsDirectory, fileName);
+    const folderPath = path.join(componentsDirectory, id);
+
+    const fullPath = path.join(folderPath, 'index.md');
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     const matterResult = matter(fileContents);
@@ -27,20 +29,29 @@ export async function getAllComponents() {
       .process(matterResult.content);
     const contentHtml = processedContent.toString();
 
-    const sourcePath = path.join(componentsDirectory, sourceFileName);
-    const code = fs.readFileSync(sourcePath, 'utf8');
+    const sourcePath = path.join(folderPath, 'index.jsx');
+    const jsx = fs.readFileSync(sourcePath, 'utf8');
+
+    const cssPath = path.join(folderPath, 'index.css');
+    const css = fs.existsSync(cssPath) ? fs.readFileSync(cssPath, 'utf8') : null;
 
     return {
       id,
       contentHtml,
-      code,
+      code: {
+        jsx,
+        ...css && { css },
+      },
       ...(matterResult.data as { order: number; title: string, component: string }),
     };
   }))).filter(Boolean);
 
-  return allPostsData.sort((a, b) => a.order - b.order);
+  return allItems.sort((a, b) => a.order - b.order);
 }
 
-export function getPlayground() {
-  return fs.readFileSync(playgroundPath, 'utf8');
+export function getPlayground(): CodeSpace {
+  return {
+    jsx: fs.readFileSync(path.join(playgroundPath, 'index.jsx'), 'utf8'),
+    css: fs.readFileSync(path.join(playgroundPath, 'index.css'), 'utf8'),
+  };
 }

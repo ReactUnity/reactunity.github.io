@@ -115,9 +115,48 @@
     text-align: start;
     letter-spacing: 0.08em;
 
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 42px;
+
     &.error {
       background: #ff6464;
       color: #ffffff;
+    }
+
+    .fileTab {
+      padding: 10px 20px;
+      border: none;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      margin-right: 12px;
+      text-transform: uppercase;
+      color: white;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      align-self: flex-end;
+      background: #606570;
+      cursor: pointer;
+
+      &.active {
+        background: #282a36;
+      }
+    }
+
+    .revertButton {
+      align-self: center;
+      padding: 6px 12px;
+      background-color: #9c7db0;
+      color: #ececec;
+      border: none;
+      border-radius: 8px;
+      text-transform: uppercase;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+      font-size: 12px;
     }
   }
 
