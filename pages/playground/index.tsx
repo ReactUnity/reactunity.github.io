@@ -4,7 +4,7 @@ import Unity, { UnityAPI } from 'components/unity'
 import { getPlayground } from 'lib/components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { useCallback, useLayoutEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import style from './index.module.scss'
 
 interface Props {
@@ -22,7 +22,7 @@ export default function Components({ code }: Props) {
   const unityComponent = useMemo(() => <Unity sampleName="sample1" unityRef={setUnityRef}
     className={clsx(style.unityInstance)} />, [setUnityRef]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!(activeCode && unityRef)) return;
     if (activeCode.error) return;
     unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);

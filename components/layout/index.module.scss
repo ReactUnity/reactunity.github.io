@@ -1,7 +1,9 @@
-.container {
-  max-width: 960px;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem;
+@import "styles/variables";
+
+.main {
+  max-width: $pageWidth;
+  padding: 0 24px;
+  margin: 1rem auto 2rem;
 }
 
 .header {

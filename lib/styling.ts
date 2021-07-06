@@ -18,6 +18,7 @@ export interface Styling {
   css: string;
   jsx: string;
   inherited?: boolean;
+  animatable?: boolean;
 };
 
 export async function getAllStyling() {

@@ -6,7 +6,7 @@ import Unity, { UnityAPI } from 'components/unity'
 import { getAllComponents } from 'lib/components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import utilStyles from 'styles/utils.module.scss'
 import style from './index.module.scss'
@@ -61,19 +61,19 @@ export default function Components({ components }: Props) {
     return () => el.remove();
   }, [setUnityContainerWrapper])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!unityContainerWrapper) return;
     if (unityContainer) unityContainer.appendChild(unityContainerWrapper);
     else unityContainerWrapper.remove();
   }, [unityContainerWrapper, unityContainer]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!(activeCode && unityRef)) return;
     if (activeCode.error) return;
     unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
   }, [activeCode, unityRef]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       const keys = Object.keys(componentRefs.current);
 

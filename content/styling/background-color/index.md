@@ -3,6 +3,7 @@ title: Background Color
 css: background-color
 jsx: backgroundColor
 order: 1
+animatable: true
 ---
 
 Sets the background color of a component.

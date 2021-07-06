@@ -1,0 +1,47 @@
+@import "styles/variables.scss";
+
+.host {
+  background-color: $darkBg;
+  color: white;
+}
+
+.content {
+  max-width: $pageWidth;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0 4px;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 8px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:global(.active) {
+      color: $primary;
+
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid $primary;
+    }
+  }
+}
+
+.homeLink {
+  font-weight: bold;
+
+  img {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+    filter: drop-shadow(0px 0px 0px #fff);
+  }
+}

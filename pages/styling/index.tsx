@@ -6,7 +6,7 @@ import Unity, { UnityAPI } from 'components/unity'
 import { getAllStyling, Styling } from 'lib/styling'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import utilStyles from 'styles/utils.module.scss'
 import style from './index.module.scss'
@@ -53,19 +53,19 @@ export default function Components({ styling }: Props) {
     return () => el.remove();
   }, [setUnityContainerWrapper])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!unityContainerWrapper) return;
     if (unityContainer) unityContainer.appendChild(unityContainerWrapper);
     else unityContainerWrapper.remove();
   }, [unityContainerWrapper, unityContainer]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!(activeCode && unityRef)) return;
     if (activeCode.error) return;
     unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
   }, [activeCode, unityRef]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       const keys = Object.keys(componentRefs.current);
 
@@ -93,6 +93,7 @@ export default function Components({ styling }: Props) {
               <span className={style.titleBubble}>JSX: <code>{cmp.jsx}</code></span>
               <span className={style.titleBubble}>CSS: <code>{cmp.css}</code></span>
               {cmp.inherited && <span className={style.inheritedBubble}>Inherited</span>}
+              {cmp.animatable && <span className={style.animatableBubble}>Animatable</span>}
             </h2>
 
             <Markdown content={cmp.contentHtml} className={style.content} />
