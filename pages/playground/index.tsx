@@ -19,8 +19,7 @@ export default function Components({ code }: Props) {
 
   const [unityRef, setUnityRef] = useState<UnityAPI>(null);
 
-  const unityComponent = useMemo(() => <Unity sampleName="sample1" unityRef={setUnityRef}
-    className={clsx(style.unityInstance)} />, [setUnityRef]);
+  const unityComponent = useMemo(() => <Unity unityRef={setUnityRef} className={clsx(style.unityInstance)} />, [setUnityRef]);
 
   useEffect(() => {
     if (!(activeCode && unityRef)) return;

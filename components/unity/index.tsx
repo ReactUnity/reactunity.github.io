@@ -31,7 +31,7 @@ interface Props {
   unityRef?: (unityInstance: UnityAPI) => void;
 }
 
-export default function Unity({ className, sampleName, unityRef, innerRef }: Props) {
+export default function Unity({ className, sampleName = 'injectable', unityRef, innerRef }: Props) {
   const [progress, setProgress] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(isLoaderScriptLoaded());
   const [unityInstance, setUnityInstance] = useState<UnityAPI>();
@@ -40,9 +40,9 @@ export default function Unity({ className, sampleName, unityRef, innerRef }: Pro
     if (!canvas || !scriptLoaded) { return; }
 
     const unityInstance: UnityInstance = await global.createUnityInstance(canvas, {
-      dataUrl: `/Unity/${sampleName}/Build/Web.data`,
-      frameworkUrl: `/Unity/${sampleName}/Build/Web.framework.js`,
-      codeUrl: `/Unity/${sampleName}/Build/Web.wasm`,
+      dataUrl: `/Unity/${sampleName}/Build/WebInjectable.data`,
+      frameworkUrl: `/Unity/${sampleName}/Build/WebInjectable.framework.js`,
+      codeUrl: `/Unity/${sampleName}/Build/WebInjectable.wasm`,
       streamingAssetsUrl: 'StreamingAssets',
       companyName: 'reactunity',
       productName: sampleName,
@@ -88,7 +88,7 @@ export default function Unity({ className, sampleName, unityRef, innerRef }: Pro
 
   return <>
     <Head>
-      <script src="/Unity/sample1/Build/Web.loader.js" async />
+      <script src="/Unity/injectable/Build/WebInjectable.loader.js" async />
     </Head>
 
     <div className={clsx(className, style.host)} ref={innerRef}>

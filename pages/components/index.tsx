@@ -49,8 +49,7 @@ export default function Components({ components }: Props) {
   const [defaultContainer, setDefaultContainer] = useState<HTMLDivElement>(null);
   const unityContainer = componentRefs.current[activeComponent] || defaultContainer;
 
-  const unityComponent = useMemo(() => <Unity sampleName="sample1" unityRef={setUnityRef}
-    className={clsx(style.unityInstance)} />, [setUnityRef]);
+  const unityComponent = useMemo(() => <Unity unityRef={setUnityRef} className={clsx(style.unityInstance)} />, [setUnityRef]);
 
   const [unityContainerWrapper, setUnityContainerWrapper] = useState<HTMLDivElement>();
 
