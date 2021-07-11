@@ -1,0 +1,10 @@
+{
+  "extends": "next",
+  "rules": {
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "@next/next/no-img-element": "off"
+  }
+}
