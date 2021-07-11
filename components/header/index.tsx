@@ -10,10 +10,11 @@ export const siteTitle = 'React Unity'
 
 interface Props {
   className?: string;
+  fullSize?: boolean;
 }
 
-export function Header({ className }: Props) {
-  return <header className={clsx(className, style.host)}>
+export function Header({ className, fullSize }: Props) {
+  return <header className={clsx(className, style.host, fullSize && style.fullSize)}>
     <div className={style.content}>
       <Link href="/">
         <a className={clsx(style.link, style.homeLink)}>

@@ -1,8 +1,9 @@
 import clsx from 'clsx'
 import { CodeExample, CodeSpace, CompiledCode } from 'components/code-example'
+import { Header } from 'components/header'
 import Unity, { UnityAPI } from 'components/unity'
-import { getPlayground } from 'lib/code'
-import { GetStaticProps } from 'next'
+import { getAllCodes, getCode } from 'lib/code'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import style from './index.module.scss'
@@ -27,20 +28,41 @@ export default function Components({ code }: Props) {
     unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
   }, [activeCode, unityRef]);
 
-  return <>
+  return <div className={style.host}>
     <Head>
       <title>Playground</title>
     </Head>
 
-    <div className={style.host}>
-      <CodeExample code={code} active={true} id={'playground'} className={style.codeExample}
-        onChange={setCompiledCode} children={unityComponent} />
-    </div>
-  </>;
+    <Header fullSize />
+
+    <CodeExample code={code} active={true} id={'playground'} className={style.codeExample}
+      onChange={setCompiledCode} children={unityComponent} />
+  </div>;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const codes = await getAllCodes();
+  return {
+    paths: [
+      {
+        params: {
+          id: [],
+        },
+      },
+      ...codes.map(codeId => ({
+        params: {
+          id: codeId.split(/[/\\]/g),
+        },
+      })),
+    ],
+    fallback: false,
+  };
 }
 
 export const getStaticProps: GetStaticProps<{ code: CodeSpace }> = async ({ params }) => {
-  const code = await getPlayground();
+  const path = params.id || 'playground'
+
+  const code = await getCode(path);
   return {
     props: {
       code,

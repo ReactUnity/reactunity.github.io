@@ -1,13 +1,13 @@
-import Layout, { siteTitle } from 'components/layout'
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
-import utilStyles from 'styles/utils.module.scss'
+import Layout, { siteTitle } from 'components/layout';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import utilStyles from 'styles/utils.module.scss';
 
 interface Props {
 }
 
 export default function Home({ }: Props) {
-  return <Layout home>
+  return <Layout>
     <Head>
       <title>{siteTitle}</title>
     </Head>

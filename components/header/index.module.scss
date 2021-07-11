@@ -3,6 +3,13 @@
 .host {
   background-color: $darkBg;
   color: white;
+
+  &.fullSize {
+    .content {
+      margin: 0;
+      max-width: initial;
+    }
+  }
 }
 
 .content {
@@ -12,6 +19,7 @@
   flex-direction: row;
   align-items: stretch;
   padding: 0 4px;
+  padding-right: 24px;
 
   a {
     display: flex;

@@ -4,9 +4,10 @@ import path from 'path'
 import remark from 'remark'
 import deflist from 'remark-deflist'
 import html from 'remark-html'
+import { getDirectories } from './common'
 
 const docsDirectory = path.join(process.cwd(), 'content', 'docs');
-const getAllDocs = () => fs.readdirSync(docsDirectory, { withFileTypes: true }).filter(d => d.isDirectory());
+const getAllDocs = () => getDirectories(docsDirectory);
 
 export function getSortedDocsData() {
   const docs = getAllDocs();

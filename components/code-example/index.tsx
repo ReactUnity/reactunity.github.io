@@ -6,6 +6,7 @@ import React, { LegacyRef, ReactNode, useState } from 'react';
 import style from './index.module.scss';
 
 export interface CodeSpace extends Partial<Record<Language, string>> {
+  id: string;
   jsx: string;
   css?: string;
 }
@@ -53,7 +54,7 @@ export function CodeExample({ className, id, code, active, onChange, onActivate,
 
   language = language || 'jsx';
 
-  const files = Object.keys(code) as Language[];
+  const files = Object.keys(code).filter(x => x !== 'id') as Language[];
 
   const [activeFile, setActiveFile] = useState(language);
 
