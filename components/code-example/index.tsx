@@ -103,7 +103,9 @@ export function CodeExample({ className, id, code, active, onChange, onActivate,
     <div className={style.livePreview}>
       <div className={clsx(style.title, !!error && style.error)}>{error ? 'Error' : 'Result'}</div>
 
-      <div data-id={id} ref={unityContainerRef} className={style.unityContainer} children={children} />
+      <div data-id={id} ref={unityContainerRef} className={style.unityContainer}>
+        {children}
+      </div>
 
       {!active &&
         <div className={style.setActiveView}>

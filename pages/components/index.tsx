@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import { CodeSpace, CompiledCode, InlineCodeExample } from 'components/code-example'
 import Layout from 'components/layout'
 import Markdown from 'components/markdown'
-import Unity, { UnityAPI } from 'components/unity'
+import { useGlobalUnity } from 'components/unity'
 import { getAllComponents } from 'lib/components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import utilStyles from 'styles/utils.module.scss'
 import style from './index.module.scss'
@@ -44,12 +44,12 @@ export default function Components({ components }: Props) {
   const [activeComponent, setActiveComponent] = useState<string>(components[0].id);
   const activeCode = compiledCodes[activeComponent];
 
-  const [unityRef, setUnityRef] = useState<UnityAPI>(null);
 
   const [defaultContainer, setDefaultContainer] = useState<HTMLDivElement>(null);
   const unityContainer = componentRefs.current[activeComponent] || defaultContainer;
 
-  const unityComponent = useMemo(() => <Unity unityRef={setUnityRef} className={clsx(style.unityInstance)} />, [setUnityRef]);
+  const { loadUnity, instance: unityRef, component: unityComponent } = useGlobalUnity();
+  useEffect(() => loadUnity(null, clsx(style.unityInstance)), [loadUnity]);
 
   const [unityContainerWrapper, setUnityContainerWrapper] = useState<HTMLDivElement>();
 

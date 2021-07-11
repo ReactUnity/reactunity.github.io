@@ -32,15 +32,15 @@ export function Header({ className, fullSize }: Props) {
 
       <span className={utilStyles.spacer}></span>
 
-      <ActiveLink href={`/components`}>
+      <ActiveLink href={'/components'}>
         Components
       </ActiveLink>
 
-      <ActiveLink href={`/styling`}>
+      <ActiveLink href={'/styling'}>
         Styling
       </ActiveLink>
 
-      <ActiveLink href={`/playground`}>
+      <ActiveLink href={'/playground'}>
         Playground
       </ActiveLink>
     </div>

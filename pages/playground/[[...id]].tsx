@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { CodeExample, CodeSpace, CompiledCode } from 'components/code-example'
 import { Header } from 'components/header'
-import Unity, { UnityAPI } from 'components/unity'
+import { useGlobalUnity } from 'components/unity'
 import { getAllCodes, getCode } from 'lib/code'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import style from './index.module.scss'
 
 interface Props {
@@ -18,9 +18,8 @@ export default function Components({ code }: Props) {
     setActiveCode(cc);
   }, [setActiveCode]);
 
-  const [unityRef, setUnityRef] = useState<UnityAPI>(null);
-
-  const unityComponent = useMemo(() => <Unity unityRef={setUnityRef} className={clsx(style.unityInstance)} />, [setUnityRef]);
+  const { loadUnity, instance: unityRef, component: unityComponent } = useGlobalUnity();
+  useEffect(() => loadUnity(null, clsx(style.unityInstance)), [loadUnity]);
 
   useEffect(() => {
     if (!(activeCode && unityRef)) return;
@@ -36,7 +35,9 @@ export default function Components({ code }: Props) {
     <Header fullSize />
 
     <CodeExample code={code} active={true} id={'playground'} className={style.codeExample}
-      onChange={setCompiledCode} children={unityComponent} />
+      onChange={setCompiledCode}>
+      {unityComponent}
+    </CodeExample>
   </div>;
 }
 

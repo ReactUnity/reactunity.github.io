@@ -18,6 +18,7 @@ export default function CodeEditor({ className, code, language, onChange, onFocu
   const [compiled, setCompiled] = useState<string>(code);
   const timeoutRef = useRef<any>();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => onChange?.(compiled), []);
 
   const change = (code: string) => {

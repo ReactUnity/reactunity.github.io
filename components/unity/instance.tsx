@@ -3,26 +3,7 @@ import clsx from 'clsx';
 import Head from 'next/head';
 import React, { LegacyRef, useCallback, useEffect, useState } from 'react';
 import style from './index.module.scss';
-
-export interface UnityInstance {
-  SendMessage: (objectName: string, methodName: string, argument?: string | number) => void;
-  SetFullscreen: (toggle: 0 | 1) => void;
-  Quit: () => Promise<void>;
-}
-
-export interface UnityAPI extends UnityInstance {
-  SetReactScript: (jsx: string, css: string) => void;
-  LoadScene: (sceneName: string) => void;
-  ReloadScene: () => void;
-}
-
-declare global {
-  function createUnityInstance(canvas: any, props: any, progressCallback: (progress: number) => void): Promise<UnityInstance>;
-}
-
-function isLoaderScriptLoaded() {
-  return typeof global.createUnityInstance === 'function';
-}
+import { defaultUnityInstanceName, isLoaderScriptLoaded, UnityAPI, UnityInstance } from './types';
 
 interface Props {
   className?: string;
@@ -31,7 +12,7 @@ interface Props {
   unityRef?: (unityInstance: UnityAPI) => void;
 }
 
-export default function Unity({ className, sampleName = 'injectable', unityRef, innerRef }: Props) {
+export function Unity({ className, sampleName = defaultUnityInstanceName, unityRef, innerRef }: Props) {
   const [progress, setProgress] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(isLoaderScriptLoaded());
   const [unityInstance, setUnityInstance] = useState<UnityAPI>();
@@ -91,7 +72,7 @@ export default function Unity({ className, sampleName = 'injectable', unityRef, 
       <script src="/Unity/injectable/Build/WebInjectable.loader.js" async />
     </Head>
 
-    <div className={clsx(className, style.host)} ref={innerRef}>
+    <div className={clsx(className, style.host, 'unity')} ref={innerRef}>
       <canvas className={style.canvas} ref={setCanvasRef} tabIndex={-1} />
 
       {progress < 1 &&

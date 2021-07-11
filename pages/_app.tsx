@@ -1,3 +1,4 @@
+import { GlobalUnityProvider } from 'components/unity';
 import * as gtag from 'lib/gtag';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
@@ -14,5 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} />;
+  return <GlobalUnityProvider>
+    <Component {...pageProps} />
+  </GlobalUnityProvider>;
 }
