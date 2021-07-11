@@ -18,7 +18,7 @@ export default function Components({ code }: Props) {
     setActiveCode(cc);
   }, [setActiveCode]);
 
-  const { loadUnity, instance: unityRef, component: unityComponent } = useGlobalUnity();
+  const { loadUnity, instance: unityRef, container } = useGlobalUnity();
   useEffect(() => loadUnity(null, clsx(style.unityInstance)), [loadUnity]);
 
   useEffect(() => {
@@ -26,6 +26,14 @@ export default function Components({ code }: Props) {
     if (activeCode.error) return;
     unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
   }, [activeCode, unityRef]);
+
+  const [unityContainer, setContainerRef] = useState<HTMLDivElement>();
+
+  useEffect(() => {
+    if (!container) return;
+    if (unityContainer) unityContainer.appendChild(container);
+    else container.remove();
+  }, [unityContainer, container]);
 
   return <div className={style.host}>
     <Head>
@@ -35,9 +43,7 @@ export default function Components({ code }: Props) {
     <Header fullSize />
 
     <CodeExample code={code} active={true} id={'playground'} className={style.codeExample}
-      onChange={setCompiledCode}>
-      {unityComponent}
-    </CodeExample>
+      onChange={setCompiledCode} unityContainerRef={setContainerRef} />
   </div>;
 }
 

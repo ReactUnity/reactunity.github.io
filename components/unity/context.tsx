@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { Unity } from './instance';
 import { defaultUnityInstanceName, UnityAPI } from './types';
 
@@ -6,6 +7,7 @@ export interface UnityContextType {
   instance?: UnityAPI;
   component: React.ReactElement | null;
   loadedId?: string;
+  container?: HTMLDivElement;
   loadUnity: (id?: string, className?: string) => void;
   unloadUnity: () => void;
 }
@@ -31,11 +33,26 @@ export function GlobalUnityProvider({ children }: { children?: React.ReactNode }
     <Unity unityRef={setInstance} sampleName={loadedId} className={className} />,
     [setInstance, loadedId, className]);
 
-  const value = useMemo(() =>
-    ({ loadedId, component, instance, loadUnity, unloadUnity }),
-    [loadedId, component, instance, loadUnity, unloadUnity]);
 
-  return React.createElement(UnityContext.Provider, { value }, children);
+  const [container, setContainer] = React.useState<HTMLDivElement>();
+
+  useEffect(() => {
+    const el = document.createElement('div');
+    el.className = 'global-unity-container';
+    setContainer(el);
+    return () => el.remove();
+  }, [setContainer])
+
+  const unityPortal = !!container && createPortal(component, container, 'unity-instance');
+
+  const value = useMemo(() =>
+    ({ loadedId, component, instance, container, loadUnity, unloadUnity }),
+    [loadedId, component, instance, container, loadUnity, unloadUnity]);
+
+  return <>
+    {unityPortal}
+    <UnityContext.Provider value={value}>{children}</UnityContext.Provider>
+  </>;
 };
 
 export function useGlobalUnity() {

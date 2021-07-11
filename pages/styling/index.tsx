@@ -7,7 +7,6 @@ import { getAllStyling, Styling } from 'lib/styling'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import utilStyles from 'styles/utils.module.scss'
 import style from './index.module.scss'
 
@@ -36,32 +35,23 @@ export default function Components({ styling }: Props) {
   const [activeComponent, setActiveComponent] = useState<string>(styling[0].id);
   const activeCode = compiledCodes[activeComponent];
 
-  const { loadUnity, instance: unityRef, component: unityComponent } = useGlobalUnity();
+  const { loadUnity, instance, container } = useGlobalUnity();
   useEffect(() => loadUnity(null, clsx(style.unityInstance)), [loadUnity]);
 
   const [defaultContainer, setDefaultContainer] = useState<HTMLDivElement>(null);
   const unityContainer = componentRefs.current[activeComponent] || defaultContainer;
 
-  const [unityContainerWrapper, setUnityContainerWrapper] = useState<HTMLDivElement>();
+  useEffect(() => {
+    if (!container) return;
+    if (unityContainer) unityContainer.appendChild(container);
+    else container.remove();
+  }, [container, unityContainer]);
 
   useEffect(() => {
-    const el = document.createElement('div');
-    el.className = style.unityContainerWrapper;
-    setUnityContainerWrapper(el);
-    return () => el.remove();
-  }, [setUnityContainerWrapper])
-
-  useEffect(() => {
-    if (!unityContainerWrapper) return;
-    if (unityContainer) unityContainer.appendChild(unityContainerWrapper);
-    else unityContainerWrapper.remove();
-  }, [unityContainerWrapper, unityContainer]);
-
-  useEffect(() => {
-    if (!(activeCode && unityRef)) return;
+    if (!(activeCode && instance)) return;
     if (activeCode.error) return;
-    unityRef.SetReactScript(activeCode.compiledCode, activeCode.style);
-  }, [activeCode, unityRef]);
+    instance.SetReactScript(activeCode.compiledCode, activeCode.style);
+  }, [activeCode, instance]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -106,8 +96,6 @@ export default function Components({ styling }: Props) {
 
         <div ref={setDefaultContainer} />
       </article>
-
-      {!!unityContainerWrapper && createPortal(unityComponent, unityContainerWrapper, 'unity-instance')}
     </Layout>
   )
 }

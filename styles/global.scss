@@ -31,3 +31,12 @@ code,
 pre {
   font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
 }
+
+.global-unity-container {
+  // Fallback in case 'contents' is not supported
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: contents;
+}
