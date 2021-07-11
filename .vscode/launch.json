@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Next: Node",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/next",
+      "console": "integratedTerminal"
+    }
+  ]
+}

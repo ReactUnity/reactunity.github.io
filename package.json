@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.7",
-    "@types/node": "^16.0.1",
+    "@types/node": "^16.3.1",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "sass": "^1.35.2",
