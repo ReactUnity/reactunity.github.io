@@ -5,6 +5,7 @@ jsx: color
 order: 0
 inherited: true
 animatable: true
+code: style/color
 ---
 
 Sets the text color inside a component.

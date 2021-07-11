@@ -2,6 +2,7 @@
 title: Toggle Component
 component: toggle
 order: 6
+code: components/toggle
 ---
 
 `toggle` creates a boolean toggle component.

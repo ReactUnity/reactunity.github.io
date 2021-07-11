@@ -4,6 +4,7 @@ css: box-shadow
 jsx: boxShadow
 order: 4
 animatable: true
+code: style/box-shadow
 ---
 
 Creates a box shadow of the target element.

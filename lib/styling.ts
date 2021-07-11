@@ -5,9 +5,11 @@ import path from 'path'
 import remark from 'remark'
 import deflist from 'remark-deflist'
 import html from 'remark-html'
+import { getCode } from './code'
+import { getFiles } from './common'
 
 const docsDirectory = path.join(process.cwd(), 'content', 'styling');
-const getAllItems = () => fs.readdirSync(docsDirectory, { withFileTypes: true }).filter(d => d.isDirectory());
+const getAllItems = () => getFiles(docsDirectory);
 
 export interface Styling {
   id: string;
@@ -26,9 +28,8 @@ export async function getAllStyling() {
 
   const allItems = (await Promise.all(items.map(async folderName => {
     const id = folderName.name;
-    const folderPath = path.join(docsDirectory, id);
+    const mdPath = path.join(docsDirectory, id);
 
-    const mdPath = path.join(folderPath, 'index.md');
     const fileContents = fs.readFileSync(mdPath, 'utf8');
 
     const matterResult = matter(fileContents);
@@ -39,17 +40,11 @@ export async function getAllStyling() {
       .process(matterResult.content);
     const contentHtml = processedContent.toString();
 
-    const jsxPath = path.join(folderPath, 'index.jsx');
-    const jsx = fs.readFileSync(jsxPath, 'utf8');
-
-    const cssPath = path.join(folderPath, 'index.css');
-    const css = fs.readFileSync(cssPath, 'utf8');
-
     return {
       id,
       contentHtml,
-      code: { jsx, css },
       ...matterResult.data,
+      code: getCode(matterResult.data.code),
     } as Styling;
   }))).filter(Boolean);
 

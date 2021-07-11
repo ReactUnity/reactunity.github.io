@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { CodeExample, CodeSpace, CompiledCode } from 'components/code-example'
 import Unity, { UnityAPI } from 'components/unity'
-import { getPlayground } from 'lib/components'
+import { getPlayground } from 'lib/code'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useCallback, useEffect, useMemo, useState } from 'react'

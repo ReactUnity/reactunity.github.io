@@ -2,6 +2,7 @@
 title: Input Component
 component: input
 order: 3
+code: components/input
 ---
 
 `input` creates a text input component.

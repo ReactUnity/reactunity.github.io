@@ -2,6 +2,7 @@
 title: Image Component
 component: image
 order: 20
+code: components/image
 ---
 
 `image` creates an image component. Alternatively, `rawimage` creates a raw image component.
