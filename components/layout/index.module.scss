@@ -6,12 +6,16 @@
   margin: 1rem auto 2rem;
 }
 
+.fullSize {
+  .main {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.backToHome {
-  margin: 3rem 0 0;
 }

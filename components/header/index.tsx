@@ -18,13 +18,7 @@ export function Header({ className, fullSize }: Props) {
     <div className={style.content}>
       <Link href="/">
         <a className={clsx(style.link, style.homeLink)}>
-          <img
-            src="/images/logo.png"
-            className={utilStyles.borderCircle}
-            height={108}
-            width={108}
-            alt={name}
-          />
+          <img src="/images/logo.png" className={utilStyles.borderCircle} height={48} width={48} alt={name} />
 
           {name}
         </a>
@@ -43,6 +37,9 @@ export function Header({ className, fullSize }: Props) {
       <ActiveLink href={'/playground'}>
         Playground
       </ActiveLink>
+
+      <a href="https://github.com/ReactUnity/core" aria-label="Github" className={style.githubLink}
+        target="_blank" rel="noopener noreferrer" />
     </div>
   </header>;
 }
