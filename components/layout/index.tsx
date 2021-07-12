@@ -1,11 +1,11 @@
-import clsx from 'clsx'
-import Head from 'next/head'
-import React from 'react'
-import { Header } from '../header'
-import styles from './index.module.scss'
+import clsx from 'clsx';
+import Head from 'next/head';
+import React from 'react';
+import { Header } from '../header';
+import styles from './index.module.scss';
 
-const name = 'React Unity'
-export const siteTitle = 'React Unity'
+const name = 'React Unity';
+export const siteTitle = 'React Unity';
 
 interface Props {
   children: React.ReactNode;

@@ -1,12 +1,12 @@
-import clsx from 'clsx'
-import { CodeExample, CodeSpace, CompiledCode } from 'components/code-example'
-import { Header } from 'components/header'
-import { useGlobalUnity } from 'components/unity'
-import { getAllCodes, getCode } from 'lib/code'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import { useCallback, useEffect, useState } from 'react'
-import style from './index.module.scss'
+import clsx from 'clsx';
+import { CodeExample, CodeSpace, CompiledCode } from 'components/code-example';
+import { Header } from 'components/header';
+import { useGlobalUnity } from 'components/unity';
+import { getAllCodes, getCode } from 'lib/code';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import { useCallback, useEffect, useState } from 'react';
+import style from './index.module.scss';
 
 interface Props {
   code: CodeSpace;
@@ -64,10 +64,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ],
     fallback: false,
   };
-}
+};
 
 export const getStaticProps: GetStaticProps<{ code: CodeSpace }> = async ({ params }) => {
-  const path = params.id || 'playground'
+  const path = params.id || 'playground';
 
   const code = await getCode(path);
   return {
@@ -75,4 +75,4 @@ export const getStaticProps: GetStaticProps<{ code: CodeSpace }> = async ({ para
       code,
     },
   };
-}
+};

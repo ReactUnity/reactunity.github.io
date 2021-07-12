@@ -1,10 +1,10 @@
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
-import remark from 'remark'
-import deflist from 'remark-deflist'
-import html from 'remark-html'
-import { getDirectories } from './common'
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
+import remark from 'remark';
+import deflist from 'remark-deflist';
+import html from 'remark-html';
+import { getDirectories } from './common';
 
 const docsDirectory = path.join(process.cwd(), 'content', 'docs');
 const getAllDocs = () => getDirectories(docsDirectory);

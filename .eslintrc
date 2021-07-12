@@ -5,6 +5,19 @@
       "error",
       "single"
     ],
+    "semi": "error",
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "functions": "only-multiline"
+      }
+    ],
     "@next/next/no-img-element": "off"
   }
 }

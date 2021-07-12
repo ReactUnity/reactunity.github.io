@@ -1,14 +1,14 @@
-import clsx from 'clsx'
-import { CodeSpace, CompiledCode, InlineCodeExample } from 'components/code-example'
-import Layout from 'components/layout'
-import Markdown from 'components/markdown'
-import { useGlobalUnity } from 'components/unity'
-import { getAllComponents } from 'lib/components'
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import utilStyles from 'styles/utils.module.scss'
-import style from './index.module.scss'
+import clsx from 'clsx';
+import { CodeSpace, CompiledCode, InlineCodeExample } from 'components/code-example';
+import Layout from 'components/layout';
+import Markdown from 'components/markdown';
+import { useGlobalUnity } from 'components/unity';
+import { getAllComponents } from 'lib/components';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import utilStyles from 'styles/utils.module.scss';
+import style from './index.module.scss';
 
 interface Component {
   order: number;
@@ -99,7 +99,7 @@ export default function Components({ components }: Props) {
         <div ref={setDefaultContainer} />
       </article>
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps<{ components: Component[] }> = async ({ params }) => {
@@ -109,4 +109,4 @@ export const getStaticProps: GetStaticProps<{ components: Component[] }> = async
       components,
     },
   };
-}
+};

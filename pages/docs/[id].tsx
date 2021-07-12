@@ -1,11 +1,11 @@
-import Date from 'components/date'
-import Layout from 'components/layout'
-import Markdown from 'components/markdown'
-import { getAllDocIds, getDocData } from 'lib/docs'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import React from 'react'
-import utilStyles from 'styles/utils.module.scss'
+import Date from 'components/date';
+import Layout from 'components/layout';
+import Markdown from 'components/markdown';
+import { getAllDocIds, getDocData } from 'lib/docs';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import React from 'react';
+import utilStyles from 'styles/utils.module.scss';
 
 interface Props {
   docData: {
@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: false,
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const docData = await getDocData(params.id as string);
@@ -47,4 +47,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       docData,
     },
   };
-}
+};

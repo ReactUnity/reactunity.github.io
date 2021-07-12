@@ -5,8 +5,8 @@ import React from 'react';
 import utilStyles from 'styles/utils.module.scss';
 import style from './index.module.scss';
 
-const name = 'React Unity'
-export const siteTitle = 'React Unity'
+const name = 'React Unity';
+export const siteTitle = 'React Unity';
 
 interface Props {
   className?: string;

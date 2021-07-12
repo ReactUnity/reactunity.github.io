@@ -1,11 +1,11 @@
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
-import remark from 'remark'
-import deflist from 'remark-deflist'
-import html from 'remark-html'
-import { getCode } from './code'
-import { getFiles } from './common'
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
+import remark from 'remark';
+import deflist from 'remark-deflist';
+import html from 'remark-html';
+import { getCode } from './code';
+import { getFiles } from './common';
 
 const directory = path.join(process.cwd(), 'content/components');
 const getAllItems = () => getFiles(directory);

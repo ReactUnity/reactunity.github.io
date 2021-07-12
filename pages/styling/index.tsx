@@ -1,14 +1,14 @@
-import clsx from 'clsx'
-import { CompiledCode, InlineCodeExample } from 'components/code-example'
-import Layout from 'components/layout'
-import Markdown from 'components/markdown'
-import { useGlobalUnity } from 'components/unity'
-import { getAllStyling, Styling } from 'lib/styling'
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import utilStyles from 'styles/utils.module.scss'
-import style from './index.module.scss'
+import clsx from 'clsx';
+import { CompiledCode, InlineCodeExample } from 'components/code-example';
+import Layout from 'components/layout';
+import Markdown from 'components/markdown';
+import { useGlobalUnity } from 'components/unity';
+import { getAllStyling, Styling } from 'lib/styling';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import utilStyles from 'styles/utils.module.scss';
+import style from './index.module.scss';
 
 
 interface Props {
@@ -97,7 +97,7 @@ export default function Components({ styling }: Props) {
         <div ref={setDefaultContainer} />
       </article>
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps<{ styling: Styling[] }> = async ({ params }) => {
@@ -107,4 +107,4 @@ export const getStaticProps: GetStaticProps<{ styling: Styling[] }> = async ({ p
       styling,
     },
   };
-}
+};

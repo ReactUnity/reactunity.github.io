@@ -41,7 +41,7 @@ export function GlobalUnityProvider({ children }: { children?: React.ReactNode }
     el.className = 'global-unity-container';
     setContainer(el);
     return () => el.remove();
-  }, [setContainer])
+  }, [setContainer]);
 
   const unityPortal = !!container && createPortal(component, container, 'unity-instance');
 

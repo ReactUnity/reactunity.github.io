@@ -1,12 +1,12 @@
-import { CodeSpace } from 'components/code-example'
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
-import remark from 'remark'
-import deflist from 'remark-deflist'
-import html from 'remark-html'
-import { getCode } from './code'
-import { getFiles } from './common'
+import { CodeSpace } from 'components/code-example';
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
+import remark from 'remark';
+import deflist from 'remark-deflist';
+import html from 'remark-html';
+import { getCode } from './code';
+import { getFiles } from './common';
 
 const docsDirectory = path.join(process.cwd(), 'content', 'styling');
 const getAllItems = () => getFiles(docsDirectory);

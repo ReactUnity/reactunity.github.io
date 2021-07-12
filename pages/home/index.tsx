@@ -42,6 +42,6 @@ export default function Home({ }: Props) {
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-    }
+    },
   };
-}
+};

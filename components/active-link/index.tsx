@@ -13,4 +13,4 @@ export const ActiveLink = ({ children, className, activeClassName, ...props }: R
   return <Link {...props}>
     <a className={resolvedClass}>{children}</a>
   </Link>;
-}
+};
