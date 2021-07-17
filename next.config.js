@@ -3,8 +3,8 @@ module.exports = {
   webpack: (config) => {
     config.output = config.output || {};
     config.output.devtoolModuleFilenameTemplate = function (info) {
-      return "file:///" + encodeURI(info.absoluteResourcePath);
-    }
+      return 'file:///' + encodeURI(info.absoluteResourcePath);
+    };
     return config;
   },
-}
+};
