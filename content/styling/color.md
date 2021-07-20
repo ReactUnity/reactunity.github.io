@@ -1,5 +1,5 @@
 ---
-title: Font Color
+title: Color
 css: color
 jsx: color
 order: 0

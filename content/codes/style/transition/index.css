@@ -1,0 +1,19 @@
+:root {
+  justify-content: space-around;
+  text-align: center;
+  background-color: white;
+}
+
+view {
+  align-self: center;
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+
+  transition: width 1s, background-color 400ms 1s;
+}
+
+view:hover {
+  width: 240px;
+  background-color: cornflowerblue;
+}

@@ -1,0 +1,8 @@
+button {
+  align-self: center;
+  background-color: coral;
+}
+
+button:active {
+  audio: url(res:click);
+}

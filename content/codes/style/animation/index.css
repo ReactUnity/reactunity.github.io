@@ -1,0 +1,39 @@
+:root {
+  justify-content: space-around;
+  text-align: center;
+  background-color: white;
+}
+
+view {
+  align-self: center;
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+
+  animation: rotateAnim 2s ease-in-out alternate infinite;
+}
+
+view:active {
+  animation: scaleAnim 2s linear both;
+}
+
+@keyframes rotateAnim {
+  from {
+    rotate: -60deg;
+  }
+  to {
+    rotate: 60deg;
+  }
+}
+
+@keyframes scaleAnim {
+  from {
+    scale: 1;
+  }
+  40% {
+    scale: 2.2;
+  }
+  to {
+    scale: 1.6;
+  }
+}
