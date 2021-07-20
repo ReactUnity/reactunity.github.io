@@ -1,0 +1,1 @@
+{"pageProps":{"code":{"id":"playground","jsx":"function Example() {\n  return <view style={{\n    padding: 20,\n    color: 'white',\n  }}>\n    Hello world\n  </view>;\n};\n\nReactUnityRenderer.render(<Example />);\n","css":"view {\n  background-color: crimson;\n}\n"}},"__N_SSG":true}

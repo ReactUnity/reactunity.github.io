@@ -1,1 +1,0 @@
-{"pageProps":{"code":{"id":"components/image","jsx":"const imageAddress = \"https://avatars.githubusercontent.com/u/62178684\";\n\nfunction Example() {\n  return <image\n    style={{ height: 200, objectFit: 'scale-down' }}\n    source={imageAddress} />;\n};\n\nReactUnityRenderer.render(<Example />);\n"}},"__N_SSG":true}

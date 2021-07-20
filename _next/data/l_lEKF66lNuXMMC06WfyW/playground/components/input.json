@@ -1,0 +1,1 @@
+{"pageProps":{"code":{"id":"components/input","jsx":"function Example({ defaultValue }) {\n  return <input\n    value={defaultValue}\n    style={{ margin: 20 }}\n    onChange={val => console.log(val)} />;\n};\n\nReactUnityRenderer.render(\n  <Example defaultValue=\"This is default\" />\n);\n"}},"__N_SSG":true}

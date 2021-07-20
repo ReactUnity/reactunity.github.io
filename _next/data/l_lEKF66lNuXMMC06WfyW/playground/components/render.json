@@ -1,0 +1,1 @@
+{"pageProps":{"code":{"id":"components/render","jsx":"function Example() {\n  return <view style={{ backgroundColor: 'white' }}>\n    <render height={200} width={200}\n      camera={Globals.Camera} />\n  </view>;\n};\n\nReactUnityRenderer.render(<Example />);\n"}},"__N_SSG":true}

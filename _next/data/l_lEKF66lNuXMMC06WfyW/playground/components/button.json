@@ -1,0 +1,1 @@
+{"pageProps":{"code":{"id":"components/button","jsx":"function Example() {\n  const light = Globals.Light;\n\n  return <button\n    style={{ margin: 20 }}\n    onClick={() => light.enabled = !light.enabled}>\n    Toggle Light\n  </button>;\n};\n\nReactUnityRenderer.render(<Example />);\n"}},"__N_SSG":true}
