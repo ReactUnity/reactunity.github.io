@@ -2,7 +2,7 @@
 title: Background Color
 css: background-color
 jsx: backgroundColor
-order: 1
+order: 0
 animatable: true
 code: style/background-color
 ---

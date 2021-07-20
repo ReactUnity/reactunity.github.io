@@ -2,7 +2,7 @@
 title: Opacity
 css: opacity
 jsx: opacity
-order: 6
+order: 0
 animatable: true
 code: style/opacity
 ---

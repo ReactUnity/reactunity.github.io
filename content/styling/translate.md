@@ -2,7 +2,7 @@
 title: Translate
 css: translate
 jsx: translate
-order: 6
+order: 0
 animatable: true
 code: style/translate
 ---

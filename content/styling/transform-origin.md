@@ -2,7 +2,7 @@
 title: Transform Origin
 css: transform-origin
 jsx: transformOrigin
-order: 6
+order: 0
 animatable: true
 code: style/transform-origin
 ---

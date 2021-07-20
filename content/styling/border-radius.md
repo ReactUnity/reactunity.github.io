@@ -2,7 +2,7 @@
 title: Border Radius
 css: border-radius
 jsx: borderRadius
-order: 5
+order: 0
 animatable: true
 code: style/border-radius
 ---

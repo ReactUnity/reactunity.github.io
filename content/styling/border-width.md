@@ -2,7 +2,7 @@
 title: Border Width
 css: border-width
 jsx: borderWidth
-order: 7
+order: 0
 animatable: true
 code: style/border-width
 ---

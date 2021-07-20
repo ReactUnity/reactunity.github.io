@@ -2,7 +2,7 @@
 title: Scale
 css: scale
 jsx: scale
-order: 6
+order: 0
 animatable: true
 code: style/scale
 ---

@@ -2,7 +2,7 @@
 title: Rotate
 css: rotate
 jsx: rotate
-order: 6
+order: 0
 animatable: true
 code: style/rotate
 ---

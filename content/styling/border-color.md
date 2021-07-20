@@ -2,7 +2,7 @@
 title: Border Color
 css: border-color
 jsx: borderColor
-order: 7
+order: 0
 animatable: true
 code: style/border-color
 ---

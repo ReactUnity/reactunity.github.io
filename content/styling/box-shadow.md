@@ -2,7 +2,7 @@
 title: Box Shadow
 css: box-shadow
 jsx: boxShadow
-order: 4
+order: 0
 animatable: true
 code: style/box-shadow
 ---
