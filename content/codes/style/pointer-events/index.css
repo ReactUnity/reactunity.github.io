@@ -1,0 +1,22 @@
+:root {
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+}
+
+button {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+button:active {
+  background-color: red;
+}
+
+button:nth-child(1) {
+  pointer-events: all;
+}
+
+button:nth-child(2) {
+  pointer-events: none;
+}

@@ -1,0 +1,20 @@
+:root {
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  flex-direction: row;
+}
+
+view:before {
+  content: "Before content!";
+  margin-right: 10px;
+}
+
+view:after {
+  content: "After content!";
+  margin-left: 10px;
+}
+
+view:hover text {
+  content: "Hovered to see this content";
+}

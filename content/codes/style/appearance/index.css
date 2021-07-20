@@ -1,0 +1,18 @@
+:root {
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+}
+
+button {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+button:nth-child(1) {
+  appearance: button;
+}
+
+button:nth-child(2) {
+  appearance: none;
+}
