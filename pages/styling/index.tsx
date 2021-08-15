@@ -51,6 +51,7 @@ export default function Components({ styling }: Props) {
     if (!(activeCode && instance)) return;
     if (activeCode.error) return;
     instance.SetReactScript(activeCode.compiledCode, activeCode.style);
+    instance.SendMessage('Cube', 'SetActive', 0);
   }, [activeCode, instance]);
 
   useEffect(() => {
