@@ -3,7 +3,6 @@ function Example() {
 
   return <view style={{
     flexDirection: 'row',
-    backgroundColor: 'white',
     justifyContent: 'center',
   }}>
     <toggle
