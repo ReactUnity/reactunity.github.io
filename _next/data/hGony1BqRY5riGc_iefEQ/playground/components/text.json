@@ -1,1 +1,0 @@
-{"pageProps":{"code":{"id":"components/text","jsx":"function Example({ name }) {\n  return <text style={{ color: 'yellow' }}>\n    Hello {name}\n  </text>;\n};\n\nReactUnityRenderer.render(\n  <Example name={'John Doe'} />\n);\n"}},"__N_SSG":true}
