@@ -1,0 +1,1 @@
+{"pageProps":{"code":{"id":"style/background-image","jsx":"function Example() {\n  return <>\n    <view />\n  </>;\n}\n\nReactUnityRenderer.render(<Example />);\n","css":"view {\n  flex-grow: 1;\n  background-image: url(res:star);\n}\n"}},"__N_SSG":true}
