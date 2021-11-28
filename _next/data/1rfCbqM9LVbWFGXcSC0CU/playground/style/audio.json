@@ -1,1 +1,0 @@
-{"pageProps":{"code":{"id":"style/audio","jsx":"function Example() {\n  return <>\n    Click the button to hear the audio\n    <button>\n      Click\n    </button>\n  </>;\n};\n\nReactUnityRenderer.render(<Example />);\n","css":"button {\n  align-self: center;\n  background-color: coral;\n}\n\nbutton:active {\n  audio: url(res:click);\n}\n"}},"__N_SSG":true}

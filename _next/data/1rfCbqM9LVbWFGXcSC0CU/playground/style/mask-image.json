@@ -1,1 +1,0 @@
-{"pageProps":{"code":{"id":"style/mask-image","jsx":"function Example() {\n  return <>\n    <view />\n  </>;\n};\n\nReactUnityRenderer.render(<Example />);\n","css":"view {\n  flex-grow: 1;\n  mask-image: url(res:star);\n  background-color: red;\n}\n"}},"__N_SSG":true}
