@@ -5,6 +5,6 @@ function Example() {
     <view>Fancy Text</view>
     <view>Fancy Text</view>
   </>;
-};
+}
 
 ReactUnityRenderer.render(<Example />);
